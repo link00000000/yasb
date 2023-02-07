@@ -1,6 +1,6 @@
 import logging
 import settings
-from os import path
+from os import path, environ
 from sys import argv, exit
 from pathlib import Path
 from typing import Union
@@ -14,7 +14,7 @@ from xml.dom import SyntaxErr
 
 
 SRC_CONFIGURATION_DIR = path.dirname(argv[0])
-HOME_CONFIGURATION_DIR = path.join(Path.home(), settings.DEFAULT_CONFIG_DIRECTORY)
+HOME_CONFIGURATION_DIR = environ['YSAB_CONFIG_HOME'] if 'YASB_CONFIG_HOME' in environ else path.join(Path.home(), settings.DEFAULT_CONFIG_DIRECTORY)
 HOME_STYLES_PATH = path.normpath(path.join(HOME_CONFIGURATION_DIR, settings.DEFAULT_STYLES_FILENAME))
 HOME_CONFIG_PATH = path.normpath(path.join(HOME_CONFIGURATION_DIR, settings.DEFAULT_CONFIG_FILENAME))
 DEFAULT_STYLES_PATH = path.normpath(path.join(SRC_CONFIGURATION_DIR, settings.DEFAULT_STYLES_FILENAME))
